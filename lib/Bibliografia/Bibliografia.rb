@@ -169,7 +169,7 @@ module Bibliografia
 		def title2(text, options = {})
 			title2= text
 			title2 << " (#{options[:a_title]})" if options[:a_title]
-			titulo << title2
+			titulo2 << title2
 		end
 		
 		
