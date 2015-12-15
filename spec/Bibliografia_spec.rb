@@ -10,93 +10,88 @@ describe Bibliografia do
             
         context "#Pruebas con libros" do
             
-            before :all do
-               
-                @libro1 = Bibliografia::Libro.new("Follet, K.", 2015, "Los pilares de la tierra","5º edición", "volumen 1", "Lugar publicacion", "Salamandra")
-                @libro2 = Bibliografia::Libro.new("Autor, B. A.", 2015, "AAAA","5º edición", "volumen 1", "Lugar 2", "Anaya" )
-                @libro3 = Bibliografia::Libro.new("Autor, B. A.", 2019, "AAAA","5º edición", "volumen 1", "Lugar 3", "Libros")
-                @libro4 = Bibliografia::Libro.new("Autor, B. A.", 2019, "Titulo diferente a libro 3","5º edición", "volumen 1", "Lugar 4", "Mieditorial")
-                
-                @lista1= List::List.new()
-                @lista2 = List::List.new()
-                @lista3 = List::List.new()
-                
-                @lista1.insert_single_beg(@libro1)
-                @lista1.insert_single_beg(@libro2)
-                
-                @lista2.insert_single_beg(@libro2)
-                @lista2.insert_single_beg(@libro3)
-                
-                @lista3.insert_single_beg(@libro3)
-                @lista3.insert_single_beg(@libro4)
-                
-                
-              
-                
+            libro4 = Bibliografia::Libro.new("Los Pilares de la Tierra") do |r| 
+                    
+                      r.autor = "Follet, K."   
+                      r.fecha_publicacion = "2010"
+                      r.edicion = "Tercera"
+                      r.volumen = "1" 
+                      r.lpublicacion = "EEUU"
+                      r.editor = "Bolsillo"
+                      
+            end
+            
+            #lista1 = List::List.new()
+            #lista1.insert_single_beg(libro4)
+            
+            
+            it "Se crea un objeto r de tipo libro" do
+                expect(libro4.kind_of?Bibliografia::Libro).to eq(true)
             end
             
             
-             it "Los autores son distintos" do
-                expect(@lista1.sort).to eq([@libro2,@libro1])
-             end
-         
-            it "Los autores son iguales,ordenamos por fechas" do
-                expect(@lista2.sort).to eq([@libro2,@libro3])
+            
+            
+            libro5 = Bibliografia::Libro.new("Mis mejores recetas") do  
+                    
+                      author  "Arguiñano, K." 
+                      date "2010"
+                      edition  "Primera", :n_editions => "total 5"
+                      vols  "1", :n_vols => "1 de 2"
+                      place  "España"
+                      ed  "Planeta"
+                      
+            end
+            it "Se crea un DSL con el libro 5" do
+                expect(libro5.kind_of?Bibliografia::Libro).to eq(true)
+            end
+                
+            puts libro5
+            
+            
+            articulo1 = Bibliografia::Articulo.new("Beyond the MLA handbook") do
+                
+                author "Harnack, A"
+                date "1996"
+                title2 "Documenting electronic sources on the Internet"
+                edition "Segunda", :n_editions => " total 3"
+                vols "2",  :n_vols => "2 of 2"
+                place "Chicago", :a_place => "Illinois"
+                pages "30"
+                the_editor "Science"
+                eds "B. Editor"
+                
+            end
+            it "Se crea un DSL con articulo1" do
+                expect(articulo1.kind_of?Bibliografia::Articulo).to eq(true)
             end
             
-            it "Los autores son iguales, las fechas son iguales, ordenando por título" do
-                expect(@lista3.sort).to eq([@libro3,@libro4])
+            puts articulo1
+            
+            edoc1= Bibliografia::Edoc.new("Encyclopedia of Chemical Technology") do
+                
+                author "Othmer, K."
+                date "1991"
+                edition "First", :n_editions => "1 of 1"
+                media "CD-DVD"
+                place "France", :a_place => "Paris"
+                the_editor "JACS", :a_editeur => "Chem section"
+                fuente "www.cas.usf.edu"
+                access "17 March", :a_access => "Online"
+                
             end
             
-            it "Mostrando en formato APA" do
-                expect(@libro1.to_s()).to eq("Follet, K.(2015). Los pilares de la tierra(5º edición) (volumen 1). Lugar publicacion: Salamandra.")
+            it "Se crea un DSL con edoc1" do
+                expect(edoc1.kind_of?Bibliografia::Edoc).to eq(true)
             end
+            puts edoc1
             
+            
+           
         end
         
-        context "#Pruebas con todas las referencias" do
-            
-            before :all do
-                @libro = Bibliografia::Libro.new("Autor, A. A.", 2020, "AAAA","5º edición", "vol 1", "Marte", "Salamandra")
-                @articulo = Bibliografia::Articulo.new("Autor, B. A.", 2020, "BBBB", "A. Editor","AAAA",50,"5ª edición","vol 1", "Marte", "Salamandra")
-                @doc = Bibliografia::Edoc.new("Autor, D. B.", 2014,"DDDD","1ª edición","tipo de medio","Mercurio","Editor","url",2015)
-    
-                @lista1 = List::List.new()
-                
-                @lista1.insert_single_beg(@libro)
-                @lista1.insert_single_beg(@articulo)
-                @lista1.insert_single_beg(@doc)
-                
-                
-                @libro2 = Bibliografia::Libro.new("Follet, K. & Dueñas, M. ", 1992, "AAAA","edición", "vol 7", "Editado", "Editorial")
-                @articulo2 = Bibliografia::Articulo.new("Verne, J. & Lindo, E.", 2070, "BBBB", "Un Editor","AAAA",50,"5ª edición","vol 1", "Lugar publicacion", "perenquen")
-                @electronico2 = Bibliografia::Edoc.new("Lindo, E.", 1990,"FFFF","tercera edicion","medio","Mercurio","Editor","source",2015)
-                @electronico3 = Bibliografia::Edoc.new("Dueñas, M.", 1990,"FFFF","tercera edicion","medio","Mercurio","Editor","source",2015)
-                
-                
-                @lista2 = List::List.new()
-                @lista2.insert_single_beg(@electronico2)
-                @lista2.insert_single_beg(@articulo2)
-                @lista2.insert_single_beg(@libro2)
-                @lista2.insert_single_beg(@electronico3)
-                @lista2.sort
-              
-                
-            end
-            
-            it "Se ordena alfabeticamente por apellidos" do
-                expect(@lista1.sort).to eq([@libro,@articulo, @doc])
-            end
-            
-            
-=begin  
-             it "Se ordena por autores individuales en caso de que haya más de uno " do
-                expect(@lista2.inicio).to eq(@electronico2)
-                expect(@lista2.fin).to eq(@electronico3)
-            end
-=end
-            
-        end
+
+        
 end
     
 
