@@ -87,7 +87,17 @@ describe Bibliografia do
             puts edoc1
             
             
-           
+            lista1 = List::List.new()
+            lista1.insert_single_beg(libro5)
+            lista1.insert_single_beg(articulo1)
+            lista1.insert_single_beg(edoc1)
+            
+            result= ["Encyclopedia of Chemical Technology, Othmer, K., 1991, First (1 of 1), CD-DVD, France (Paris), JACS (Chem section), www.cas.usf.edu, 17 March (Online)\n\n, Othmer, K., 1991, First (1 of 1), CD-DVD, France (Paris), JACS (Chem section), www.cas.usf.edu, 17 March (Online)\n\n", "Beyond the MLA handbook, Harnack, A, 1996,  Documenting electronic sources on the Internet,  30, Science, B. Editor, Segunda ( total 3), 2 (2 of 2), Chicago (Illinois)\n\n, Harnack, A, 1996,  Documenting electronic sources on the Internet,  30, Science, B. Editor, Segunda ( total 3), 2 (2 of 2), Chicago (Illinois)\n\n", "Mis mejores recetas, Arguiñano, K., 2010, Primera (total 5), 1 (1 de 2), España, Planeta\n\n, Arguiñano, K., 2010, Primera (total 5), 1 (1 de 2), España, Planeta\n\n"]
+            
+            
+            it "Imprimimos la lista en formato APA" do
+                expect(lista1.to_s()).to eq(result)
+            end
         end
         
 

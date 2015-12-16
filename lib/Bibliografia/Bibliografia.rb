@@ -300,7 +300,7 @@ module Bibliografia
 		def to_s()
 			salida= titulo
 			
-			salida << ", #{autor.join(', ')}, #{fecha_publicacion.join(', ')},   #{edicion.join(', ')}, #{tipo_medio.join(', ')}, #{lpublicacion.join(', ')}, #{editor.join(', ')}, #{source.join(', ')},  #{fechacceso.join(', ')}\n\n"
+			salida << ", #{autor.join(', ')}, #{fecha_publicacion.join(', ')}, #{edicion.join(', ')}, #{tipo_medio.join(', ')}, #{lpublicacion.join(', ')}, #{editor.join(', ')}, #{source.join(', ')}, #{fechacceso.join(', ')}\n\n"
 			
 			salida
 		end
