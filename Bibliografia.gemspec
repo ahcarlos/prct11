@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = [" Carlos de Armas Hernández"]
   spec.email         = ["alu0100816167@ull.edu.es"]
 
-  #if spec.respond_to?(:metadata)
-    #spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
-  #end
+  if spec.respond_to?(:metadata)
+    spec.metadata['allowed_push_host'] = "htps://rubygems.org"
+  end
 
   spec.summary       = %q{Practica 11}
   spec.description   = %q{Lenguajes y paradigmas de la programación}
